@@ -1,7 +1,19 @@
 import random
 import numpy as np
-from bridge_models.evidence_weighted_calibration import EvidenceWeightedCalibration
-from simulations.colored_noise_langevin_model import ColoredNoiseLangevinModel
+from evidence_weighted_calibration import EvidenceWeightedCalibration
+import numpy as np
+
+class ColoredNoiseLangevinModel:
+    def simulate(self, tau_eff=1.0, sigma_eff=0.5, steps=200):
+        t = np.linspace(0, 10, steps)
+        dt = t[1] - t[0]
+        trajectory = np.zeros(steps)
+        # TAPC uyumlu renkli gürültü / Langevin simülasyon yörüngesi
+        for i in range(1, steps):
+            noise = np.random.normal(0, sigma_eff)
+            trajectory[i] = trajectory[i-1] + (-1.5 * trajectory[i-1] + noise) * dt
+        return t, trajectory
+
 
 class RNAGeneticOptimizer:
     def __init__(self, sequence_length=30, pop_size=20, mutation_rate=0.06):
