@@ -6,7 +6,7 @@ import os
 
 # Üst dizindeki simulations modülünü import edebilmek için path ayarı
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from simulations.confinement_analyzer import GlobalStabilityEngine
+from confinement_analyzer import GlobalStabilityEngine
 
 if __name__ == "__main__":
     engine = GlobalStabilityEngine()

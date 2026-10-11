@@ -1,7 +1,7 @@
 import numpy as np
 import scipy.stats as stats
-from simulations.colored_noise_langevin_model import solve_sde
-from bridge_models.evidence_weighted_calibration import load_haddock_score_from_json
+from colored_noise_langevin_model import solve_sde
+from evidence_weighted_calibration import load_haddock_score_from_json
 
 # Gerçek HADDOCK simülasyon çıktısını veri tabanına dinamik çekiyoruz
 TRUE_SCORE, TRUE_STD = load_haddock_score_from_json()
