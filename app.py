@@ -10,12 +10,11 @@ st.markdown("### Nonlinear Stochastic Systems Biology & Attractor Confinement Fr
 
 st.sidebar.header("🎛️ Simülasyon Kontrolleri")
 generations = st.sidebar.slider("Evrim Nesil Sayısı (Generations)", min_value=1, max_value=50, value=5)
-noise_level = st.sidebar.slider("Stokastik Gürültü Seviyesi (Sigma)", min_value=0.1,.0, value=0.5)
+noise_level = st.sidebar.slider("Stokastik Gürültü Seviyesi (Sigma)", min_value=0.1, max_value=2.0, value=0.5)
 
 if st.sidebar.button("🚀 Optimizasyonu Başlat"):
     st.info(f"{generations} nesil boyunca genetik optimizasyon ve Van der Pol limit döngüsü simülasyonu çalıştırılıyor...")
     
-    # Simülasyon simülasyonu / çalıştırma
     fitness_history = []
     base_fit = 2.75
     for i in range(generations):
@@ -24,7 +23,6 @@ if st.sidebar.button("🚀 Optimizasyonu Başlat"):
         
     st.success("Simülasyon başarıyla tamamlandı!")
     
-    # Sonuçları Gösterme
     col1, col2 = st.columns(2)
     
     with col1:
@@ -41,7 +39,6 @@ if st.sidebar.button("🚀 Optimizasyonu Başlat"):
         st.subheader("🔄 Van der Pol Faz Uzayı (Limit Döngüsü)")
         fig2, ax2 = plt.subplots(figsize=(6, 4))
         t = np.linspace(0, 15, 300)
-        # Van der Pol limit cycle phase space simulation
         x = 2 * np.cos(t) + np.random.normal(0, noise_level*0.1, len(t))
         y = -2 * np.sin(t) + np.random.normal(0, noise_level*0.1, len(t))
         ax2.plot(x, y, color='green', label='Limit Döngüsü ($r^2=2.5$)')
